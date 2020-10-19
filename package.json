@@ -1,0 +1,20 @@
+{
+  "name": "hardware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "fastcall": "^0.2.6",
+    "jest": "^26.5.3",
+    "random-int": "^2.0.1",
+    "segfault-handler": "^1.3.0"
+  },
+  "scripts": {
+    "test": "jest --max-workers 15 --noStackTrace",
+    "test2": "jest --listTests | xargs -L 1 -P 0 jest --silent",
+    "test3": "mocha mocha_tests/**",
+    "test4": "mocha-parallel-tests tests/**/*.js"
+  },
+  "author": "",
+  "license": "GPL-3.0"
+}

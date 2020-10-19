@@ -1,0 +1,6 @@
+.vscode
+obj_dir
+*.gtkw
+*.vcd
+*.fst
+node_modules

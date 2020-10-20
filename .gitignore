@@ -4,3 +4,4 @@ obj_dir
 *.vcd
 *.fst
 node_modules
+package-lock.json

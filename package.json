@@ -10,7 +10,7 @@
     "segfault-handler": "^1.3.0"
   },
   "scripts": {
-    "test": "jest --max-workers 15 --noStackTrace --watchAll"
+    "test": "jest --max-workers 15 --noStackTrace"
   },
   "author": "",
   "license": "GPL-3.0"

@@ -10,10 +10,7 @@
     "segfault-handler": "^1.3.0"
   },
   "scripts": {
-    "test": "jest --max-workers 15 --noStackTrace",
-    "test2": "jest --listTests | xargs -L 1 -P 0 jest --silent",
-    "test3": "mocha mocha_tests/**",
-    "test4": "mocha-parallel-tests tests/**/*.js"
+    "test": "jest --max-workers 15 --noStackTrace --watchAll"
   },
   "author": "",
   "license": "GPL-3.0"

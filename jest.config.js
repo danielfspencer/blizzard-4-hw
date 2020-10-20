@@ -4,5 +4,6 @@ module.exports = {
   ],
   globalSetup: "<rootDir>/build.js",
   setupFilesAfterEnv: ["<rootDir>/setup.js"],
-  testEnvironment: "node"
+  testEnvironment: "node",
+  moduleFileExtensions: ["js", "v", "cpp", "mem"]
 }

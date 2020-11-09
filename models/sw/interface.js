@@ -49,8 +49,8 @@ class SoftwareModel extends Model {
         }
     }
 
-    set_control_status (enabled) {
-        this.instance.control_unit_enabled = enabled & 1;
+    get pc() {
+        return this.instance.program_counter
     }
 
     get read_bus () {

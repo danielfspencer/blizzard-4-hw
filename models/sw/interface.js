@@ -38,6 +38,11 @@ class SoftwareModel extends Model {
         return '[SoftwareModel]'
     }
 
+    reset () {
+        this.instance.init_memory()
+        this.instance.init_emulator()
+    }
+
     step (cycles) {
         if (cycles === undefined) {
             cycles = 1

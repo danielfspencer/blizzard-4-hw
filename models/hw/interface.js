@@ -16,6 +16,7 @@ class HardwareModel extends Model {
         this.instance = ffi.Library('obj_dir/blizzard_4.so', {
             init: ['void', []],
             destroy: ['void', []],
+            reset: ['void', []],
 
             _step: ['void', ['int']],
             _read: ['int', ['int']],
@@ -38,6 +39,10 @@ class HardwareModel extends Model {
     destroy () {
         this.instance.destroy()
         this.instance = null
+    }
+
+    reset () {
+        this.instance.reset()
     }
 
     step (cycles) {

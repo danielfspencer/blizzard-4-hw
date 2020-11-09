@@ -21,6 +21,7 @@ void step(int cycles);
 
 extern "C" void init(void);
 extern "C" void destroy(void);
+extern "C" void reset(void);
 
 extern "C" void _step(int cycles);
 extern "C" int _get_pc(void);
@@ -59,13 +60,20 @@ void init(void) {
     top->ctrl_enable = true;
 
     // async reset
+    reset();
+
+    // printf("init model: waves=%d\n", TRACE_ENABLED);
+}
+
+void reset(void) {
     tick();
     top->reset = 1;
     tick();
     top->reset = 0;
     tick();
 
-    // printf("init model: waves=%d\n", TRACE_ENABLED);
+    // needed for control unit to be ready
+    step(1);
 }
 
 void destroy(void) {

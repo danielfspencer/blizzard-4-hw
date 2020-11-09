@@ -9,8 +9,8 @@ module control (
     );
 
     initial begin
-        $readmemb("fetch_ucode.mem", fetch_ucode);
-        $readmemb("execute_ucode.mem", execute_ucode);
+        $readmemb("u_code/fetch.mem", fetch_ucode);
+        $readmemb("u_code/execute.mem", execute_ucode);
     end
 
     // constants

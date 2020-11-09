@@ -16,13 +16,11 @@ class HardwareModel extends Model {
         this.instance = ffi.Library('obj_dir/blizzard_4.so', {
             init: ['void', []],
             destroy: ['void', []],
-            step: ['void', ['int']],
 
-            set_control_status: ['void', ['int']],
-
-            set_read_bus: ['void', ['int']],
-            set_data_bus: ['void', ['int']],
-            set_write_bus: ['void', ['int']],
+            _step: ['void', ['int']],
+            _read: ['int', ['int']],
+            _write: ['void', ['int','int']],
+            _copy: ['void', ['int','int']],
 
             get_read_bus: ['int', []],
             get_data_bus: ['int', []],
@@ -45,11 +43,7 @@ class HardwareModel extends Model {
         if (cycles === undefined) {
             cycles = 1
         }
-        this.instance.step(cycles)
-    }
-
-    set_control_status (enabled) {
-        this.instance.set_control_status(enabled)
+        this.instance._step(cycles)
     }
 
     get read_bus () {
@@ -65,21 +59,15 @@ class HardwareModel extends Model {
     }
 
     read(value) {
-        this.instance.set_read_bus(value)
-        this.step()
-        return this.data_bus
+        return this.instance._read(value)
     }
 
     write(value, addr) {
-        this.instance.set_data_bus(value)
-        this.instance.set_write_bus(addr)
-        this.step()
+        this.instance._write(value, addr)
     }
 
     copy(source, dest) {
-        this.instance.set_read_bus(source)
-        this.instance.set_write_bus(dest)
-        this.step()
+        this.instance._copy(source, dest)
     }
 }
 

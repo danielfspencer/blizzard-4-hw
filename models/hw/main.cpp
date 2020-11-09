@@ -6,7 +6,7 @@
 #include "obj_dir/Vblizzard_4__Dpi.h"
 
 #define PRINT_EVERY_CYCLE false
-#define TRACE_ENABLED false
+#define TRACE_ENABLED true
 #define TRACE_DEPTH 100
 
 Vblizzard_4 *top;
@@ -17,11 +17,15 @@ int test_num;
 
 void tick(void);
 void print_buses(void);
+void step(int cycles);
 
 extern "C" void init(void);
 extern "C" void destroy(void);
-extern "C" void step(int cycles);
-extern "C" void set_control_status(bool state);
+
+extern "C" void _step(int cycles);
+extern "C" int _read(int addr);
+extern "C" void _write(int value, int addr);
+extern "C" void _copy(int source, int dest);
 
 // automatically extern "C" (DPI functions from verilog bridge module)
 // int get_read_bus(void);
@@ -30,6 +34,8 @@ extern "C" void set_control_status(bool state);
 // void set_read_bus(int);
 // void set_data_bus(int);
 // void set_write_bus(int);
+
+// external functions
 
 void init(void) {
     top = new Vblizzard_4;
@@ -49,7 +55,7 @@ void init(void) {
     // init top level inputs
     top->clk = 0;
     top->reset = 0;
-    set_control_status(false);
+    top->ctrl_enable = true;
 
     // async reset
     tick();
@@ -70,26 +76,47 @@ void destroy(void) {
     // printf("destroy model: %d cycles run\n", test_num);
 }
 
+void _step(int cycles) {
+    step(cycles);
+}
+
+int _read(int addr) {
+    top->ctrl_enable = false;
+    set_read_bus(addr);
+    step(1);
+    top->ctrl_enable = true;
+    return get_data_bus();
+}
+
+
+void _write(int value, int addr) {
+    top->ctrl_enable = false;
+    set_data_bus(value);
+    set_write_bus(addr);
+    step(1);
+    top->ctrl_enable = true;
+}
+
+void _copy(int source, int dest) {
+    top->ctrl_enable = false;
+    set_read_bus(source);
+    set_write_bus(dest);
+    step(1);
+    top->ctrl_enable = true;
+}
+
+// internal functions
+
 int main(int argc, char **argv) {
     Verilated::commandArgs(argc, argv);
 
-    // create an instance of the computer
     init();
 
-    set_control_status(true);
-    // while (cycle < 1000000) {
-    //     step(1);
-    // }
-
-    step(10000000);
+    step(200);
 
     destroy();
     print_buses();
     exit(EXIT_SUCCESS);
-}
-
-void set_control_status(bool state) {
-    top->ctrl_enable = state;
 }
 
 void step(int cycles) {

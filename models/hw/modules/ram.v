@@ -7,10 +7,6 @@ module ram (
     `BUSES
     );
 
-    initial begin
-        $readmemh("ram_image.mem", memory);
-    end
-
     parameter DEPTH = 16384;
     reg `WORD memory [DEPTH-1:0];
 

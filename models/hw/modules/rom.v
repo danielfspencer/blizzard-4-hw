@@ -8,10 +8,6 @@ module rom (
     input write_protect
     );
 
-    initial begin
-        $readmemh("rom_image.mem", memory);
-    end
-
     parameter DEPTH = 32768;
     reg `WORD memory [DEPTH-1:0];
 

@@ -21,6 +21,7 @@ class HardwareModel extends Model {
             _read: ['int', ['int']],
             _write: ['void', ['int','int']],
             _copy: ['void', ['int','int']],
+            _get_pc: ['int', []],
 
             get_read_bus: ['int', []],
             get_data_bus: ['int', []],
@@ -44,6 +45,10 @@ class HardwareModel extends Model {
             cycles = 1
         }
         this.instance._step(cycles)
+    }
+
+    get pc() {
+        return this.instance._get_pc()
     }
 
     get read_bus () {

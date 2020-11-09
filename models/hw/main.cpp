@@ -23,6 +23,7 @@ extern "C" void init(void);
 extern "C" void destroy(void);
 
 extern "C" void _step(int cycles);
+extern "C" int _get_pc(void);
 extern "C" int _read(int addr);
 extern "C" void _write(int value, int addr);
 extern "C" void _copy(int source, int dest);
@@ -78,6 +79,10 @@ void destroy(void) {
 
 void _step(int cycles) {
     step(cycles);
+}
+
+int _get_pc(void) {
+    return top->blizzard_4__DOT__control__DOT__program_counter;
 }
 
 int _read(int addr) {

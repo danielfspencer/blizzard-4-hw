@@ -42,7 +42,6 @@ function create_zeroed_array(length) {
 
 function init_emulator() {
   debug = false
-  control_unit_enabled = false
   is_running = false
   total_cycles = 0
   total_instructions = 0
@@ -402,15 +401,14 @@ function step_clock() {
   debug && console.debug("---running read_clock microcode:")
   //run contol unit commands that modify (directly or indirectly) the data bus
 
-  if (control_unit_enabled) {
-    if (control_mode === 0) {
-      var instructions = get_load_fetch_microcode_instructions()
-      run_load_fetch_microcode(instructions, true)
-    } else {
-      var instructions = get_execute_microcode_instructions()
-      run_execute_microcode(instructions, true)
-    }
+  if (control_mode === 0) {
+    var instructions = get_load_fetch_microcode_instructions()
+    run_load_fetch_microcode(instructions, true)
+  } else {
+    var instructions = get_execute_microcode_instructions()
+    run_execute_microcode(instructions, true)
   }
+
 
   debug && console.debug("---new state:")
   debug && console.debug(` ↳ read bus: ${read_bus}`)
@@ -423,19 +421,19 @@ function step_clock() {
     simulate_effect_of_read_bus_change()
   }
 
-  if (control_unit_enabled) {
-    micro_program_counter++
-  }
+
+  micro_program_counter++
+
 
   debug && console.debug("---running data bus-dependant microcode: ")
   //run control unit commands that depend (directly or indirectly) on the data bus
-  if (control_unit_enabled) {
-    if (control_mode === 0) {
-      run_load_fetch_microcode(instructions, false)
-    } else {
-      run_execute_microcode(instructions, false)
-    }
+
+  if (control_mode === 0) {
+    run_load_fetch_microcode(instructions, false)
+  } else {
+    run_execute_microcode(instructions, false)
   }
+
 
   debug && console.debug("---new state:")
   debug && console.debug(` ↳ read bus: ${read_bus}`)

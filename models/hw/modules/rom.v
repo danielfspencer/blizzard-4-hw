@@ -18,14 +18,14 @@ module rom (
     always @ (negedge write_clk) out_en <= 0;
 
     always @ (posedge read_clk or posedge reset) begin
-        if (read_bus >= `ROM_START && read_bus < `ROM_END) begin
+        if (read_bus >= `ROM_START && read_bus <= `ROM_END) begin
             out_buffer <= memory[read_bus - `ROM_START];
             out_en <= 1;
         end
     end
 
     always @ (posedge write_clk) begin
-        if (~write_protect && write_bus >= `ROM_START && write_bus < `ROM_END) begin
+        if (~write_protect && write_bus >= `ROM_START && write_bus <= `ROM_END) begin
             memory[write_bus - `ROM_START] <= data_bus;
         end
     end

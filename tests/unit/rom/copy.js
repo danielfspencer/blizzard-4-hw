@@ -1,6 +1,6 @@
 describe('copy', () => {
   test.each(MODELS)('%s', model => {
-    for (let addr = 0x8000; addr < 0xffff - 1; addr++) {
+    for (let addr = 0x8000; addr < 0xffff; addr++) {
       let value = random_word()
 
       model.write(value, addr)

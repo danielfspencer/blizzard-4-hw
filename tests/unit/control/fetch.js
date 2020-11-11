@@ -3,7 +3,7 @@ describe('reset adddress', () => {
     model.reset()
     model.step()
 
-    RESET_ADDRESS = 0x8000
+    const RESET_ADDRESS = 0x8000
     // expect control unit to have fetched from RESET_ADDRESS
     if (model.read_bus !== RESET_ADDRESS) {
       throw new Error(`Expected read from ${RESET_ADDRESS}, got ${model.read_bus}`)
@@ -16,7 +16,7 @@ describe('fetch [imm] [imm]', () => {
     let [op1, op2] = [random_word(), random_word()]
 
     // write op1 op2
-    PROGRAM = `
+    const PROGRAM = `
     1000000000000000
     ${to_bin_word(op1)}
     ${to_bin_word(op2)}
@@ -27,13 +27,13 @@ describe('fetch [imm] [imm]', () => {
     model.step(2)
     // expect control unit to have fetched op1
     if (model.data_bus !== op1) {
-      throw new Error(`Expected data_bus = ${op1} (operand 1), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op1} (op 1), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have fetched op2
     if (model.data_bus !== op2) {
-      throw new Error(`Expected data_bus = ${op2} (operand 2), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op2} (op 2), got ${model.data_bus}`)
     }
   })
 })
@@ -43,7 +43,7 @@ describe('fetch [imm] [direct]', () => {
     let [op1, op2] = [random_word(), random_word()]
 
     // write [op1] op2
-    PROGRAM = `
+    const PROGRAM = `
     1000100000000000
     ${to_bin_word(op1)}
     ${to_bin_word(op2)}
@@ -54,19 +54,19 @@ describe('fetch [imm] [direct]', () => {
     model.step(2)
     // expect control unit to have fetched op1
     if (model.data_bus !== op1) {
-      throw new Error(`Expected data_bus = ${op1} (op1), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op1} (op 1), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have fetched op2
     if (model.data_bus !== op2) {
-      throw new Error(`Expected data_bus = ${op2} (op2), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op2} (op 2), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have looked up op2
     if (model.read_bus !== op2) {
-      throw new Error(`Expected read_bus = ${op2} (op2), got ${model.read_bus}`)
+      throw new Error(`Expected read_bus = ${op2} (op 2), got ${model.read_bus}`)
     }
   })
 })
@@ -76,7 +76,7 @@ describe('fetch [direct] [imm]', () => {
     let [op1, op2] = [random_word(), random_word()]
 
     // write [op1] op2
-    PROGRAM = `
+    const PROGRAM = `
     1001000000000000
     ${to_bin_word(op1)}
     ${to_bin_word(op2)}
@@ -87,19 +87,19 @@ describe('fetch [direct] [imm]', () => {
     model.step(2)
     // expect control unit to have fetched op1
     if (model.data_bus !== op1) {
-      throw new Error(`Expected data_bus = ${op1} (op1), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op1} (op 1), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have looked up op1
     if (model.read_bus !== op1) {
-      throw new Error(`Expected read_bus = ${op1} (op1), got ${model.read_bus}`)
+      throw new Error(`Expected read_bus = ${op1} (op 1), got ${model.read_bus}`)
     }
 
     model.step()
     // expect control unit to have fetched op2
     if (model.data_bus !== op2) {
-      throw new Error(`Expected data_bus = ${op2} (op2), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op2} (op 2), got ${model.data_bus}`)
     }
   })
 })
@@ -109,7 +109,7 @@ describe('fetch [direct] [direct]', () => {
     let [op1, op2] = [random_word(), random_word()]
 
     // write [op1] op2
-    PROGRAM = `
+    const PROGRAM = `
     1001100000000000
     ${to_bin_word(op1)}
     ${to_bin_word(op2)}
@@ -120,25 +120,25 @@ describe('fetch [direct] [direct]', () => {
     model.step(2)
     // expect control unit to have fetched op1
     if (model.data_bus !== op1) {
-      throw new Error(`Expected data_bus = ${op1} (op1), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op1} (op 1), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have looked up op1
     if (model.read_bus !== op1) {
-      throw new Error(`Expected read_bus = ${op1} (op1), got ${model.read_bus}`)
+      throw new Error(`Expected read_bus = ${op1} (op 1), got ${model.read_bus}`)
     }
 
     model.step()
     // expect control unit to have fetched op2
     if (model.data_bus !== op2) {
-      throw new Error(`Expected data_bus = ${op2} (op2), got ${model.data_bus}`)
+      throw new Error(`Expected data_bus = ${op2} (op 2), got ${model.data_bus}`)
     }
 
     model.step()
     // expect control unit to have looked up op2
     if (model.read_bus !== op2) {
-      throw new Error(`Expected read_bus = ${op2} (op2), got ${model.read_bus}`)
+      throw new Error(`Expected read_bus = ${op2} (op 2), got ${model.read_bus}`)
     }
   })
 })

@@ -6,6 +6,8 @@ const { HardwareModel } = require("./models/hw/interface")
 global.MODELS = [new SoftwareModel(), new HardwareModel()]
 global.DUAL_OP_ITERS = 50000
 
+global.random_int = random_int
+
 global.random_word = () => {
     return random_int(0, 0xffff)
 }

@@ -52,10 +52,6 @@ class SoftwareModel extends Model {
     }
   }
 
-  get pc() {
-    return this.instance.program_counter
-  }
-
   get read_bus () {
     return this.instance.read_bus
   }

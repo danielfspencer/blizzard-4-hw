@@ -17,7 +17,7 @@ module rom (
     always @ (posedge reset) out_en <= 0;
     always @ (negedge write_clk) out_en <= 0;
 
-    always @ (posedge read_clk or posedge reset) begin
+    always @ (posedge read_clk) begin
         if (read_bus >= `ROM_START && read_bus <= `ROM_END) begin
             out_buffer <= memory[read_bus - `ROM_START];
             out_en <= 1;

@@ -22,7 +22,7 @@ function init_memory() {
   vram = create_zeroed_array(1024 * 1) // 1k x 16 bit (2KB)
 
   //256 x 8 bit FIFO buffer for key presses
-  key_fifo = [0xAA]  //0xaa means keyobard self test OK
+  key_fifo = []
 
   //other registers
   alu_operands = [0,0]

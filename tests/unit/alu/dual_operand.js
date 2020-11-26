@@ -1,4 +1,4 @@
-const ITERS = 50000
+const ITERS = 25000
 
 describe('addition', () => {
   test.each(MODELS)('%s', model => {

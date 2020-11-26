@@ -121,7 +121,7 @@ module control (
                         program_counter <= arg_1;
                     end
                     if (execute_u_instr[1]) begin // stop clock
-                        $display("Stop clock");
+                        // $display("Stop clock");
                     end
                 end
             endcase

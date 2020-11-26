@@ -10,7 +10,10 @@
     "segfault-handler": "^1.3.0"
   },
   "scripts": {
-    "test": "jest --max-workers 17 --noStackTrace"
+    "test": "npm run all",
+    "all": "jest --noStackTrace --testPathPattern tests/ --maxWorkers 13",
+    "unit": "jest --noStackTrace --testPathPattern tests/unit/ --maxWorkers 8",
+    "integration": "jest --noStackTrace --testPathPattern tests/integration/ --maxWorkers 5"
   },
   "author": "",
   "license": "GPL-3.0"

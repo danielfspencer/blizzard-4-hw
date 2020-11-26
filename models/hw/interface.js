@@ -22,6 +22,7 @@ class HardwareModel extends Model {
       _read: ['int', ['int']],
       _write: ['void', ['int','int']],
       _copy: ['void', ['int','int']],
+      _send_ps2_byte: ['void', ['int']],
 
       get_read_bus: ['int', []],
       get_data_bus: ['int', []],
@@ -73,6 +74,10 @@ class HardwareModel extends Model {
 
   copy(source, dest) {
     this.instance._copy(source, dest)
+  }
+
+  send_ps2_byte(byte) {
+    this.instance._send_ps2_byte(byte)
   }
 }
 

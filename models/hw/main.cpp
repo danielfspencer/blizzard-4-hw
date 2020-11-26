@@ -18,6 +18,7 @@ int test_num;
 void tick(void);
 void print_buses(void);
 void step(int cycles);
+void send_ps2_bit(int bit);
 
 extern "C" void init(void);
 extern "C" void destroy(void);
@@ -25,6 +26,7 @@ extern "C" void reset(void);
 
 extern "C" void _step(int cycles);
 extern "C" int _get_pc(void);
+extern "C" void _send_ps2_byte(int byte);
 extern "C" int _read(int addr);
 extern "C" void _write(int value, int addr);
 extern "C" void _copy(int source, int dest);
@@ -120,6 +122,21 @@ void _copy(int source, int dest) {
     top->ctrl_enable = true;
 }
 
+void _send_ps2_byte(int byte) {
+    // start bit
+    send_ps2_bit(0);
+
+    for (int i = 0; i < 8; i++) {
+        send_ps2_bit(byte & 1);
+        byte >>= 1;
+    }
+
+    // parity bit, nothing actually uses this so make it 0
+    send_ps2_bit(0);
+    // stop bit
+    send_ps2_bit(1);
+}
+
 // internal functions
 
 int main(int argc, char **argv) {
@@ -146,6 +163,15 @@ void step(int cycles) {
         }
         test_num++;
     }
+}
+
+void send_ps2_bit(int bit) {
+    top->ps2_clock = 0;
+    top->ps2_data = bit;
+    tick();
+    top->ps2_clock = 1;
+    top->ps2_data = 0;
+    tick();
 }
 
 void print_buses(void) {

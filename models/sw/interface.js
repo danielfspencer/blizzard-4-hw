@@ -75,6 +75,12 @@ class SoftwareModel extends Model {
   copy(source, dest) {
     this.instance.copy(source, dest)
   }
+
+  send_ps2_byte(byte) {
+    if (this.instance.key_fifo.length < 256) {
+      this.instance.key_fifo.push(byte)
+    }
+  }
 }
 
 module.exports.SoftwareModel = SoftwareModel

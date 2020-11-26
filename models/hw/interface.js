@@ -106,7 +106,7 @@ module.exports.build = () => {
   ]
   process.chdir(__dirname)
 
-  console.log("\nBuilding hardware model...")
+  console.log("Building HardwareModel...")
   for (let [name, cmd, cwd] of STEPS) {
     run_step(name, cmd, cwd)
   }

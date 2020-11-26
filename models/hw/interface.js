@@ -76,8 +76,10 @@ class HardwareModel extends Model {
     this.instance._copy(source, dest)
   }
 
-  send_ps2_byte(byte) {
-    this.instance._send_ps2_byte(byte)
+  send_ps2_bytes(bytes) {
+    for (let byte of bytes) {
+      this.instance._send_ps2_byte(byte)
+    }
   }
 }
 

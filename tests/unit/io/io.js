@@ -23,7 +23,7 @@ describe('total fill & empty', () => {
     for (let i = 0; i < FIFO_SIZE; i++) {
       let byte = random_byte()
       fifo.push(byte)
-      model.send_ps2_byte(byte)
+      model.send_ps2_bytes([byte])
     }
 
     for (let expected of fifo) {
@@ -51,7 +51,7 @@ describe('random access', () => {
         let byte = random_byte()
 
         fifo.push(byte)
-        model.send_ps2_byte(byte)
+        model.send_ps2_bytes([byte])
       } else {
         // read byte
         let expected = fifo.shift()

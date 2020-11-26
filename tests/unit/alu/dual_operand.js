@@ -1,6 +1,8 @@
+const ITERS = 50000
+
 describe('addition', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = (a + b) & 0xffff
@@ -19,7 +21,7 @@ describe('addition', () => {
 
 describe('subtraction', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = (a - b) & 0xffff
@@ -38,7 +40,7 @@ describe('subtraction', () => {
 
 describe('∧ (and)', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = a & b
@@ -57,7 +59,7 @@ describe('∧ (and)', () => {
 
 describe('∨ (or)', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = a | b
@@ -76,7 +78,7 @@ describe('∨ (or)', () => {
 
 describe('greater than', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = (a > b) * 1
@@ -95,7 +97,7 @@ describe('greater than', () => {
 
 describe('less than', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = (a < b) * 1
@@ -114,7 +116,7 @@ describe('less than', () => {
 
 describe('equal to', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = (a == b) * 1
@@ -133,7 +135,7 @@ describe('equal to', () => {
 
 describe('overflow', () => {
   test.each(MODELS)('%s', model => {
-    for (let i = 0; i < DUAL_OP_ITERS; i++) {
+    for (let i = 0; i < ITERS; i++) {
       let a = random_word()
       let b = random_word()
       let ans = ((a + b) > 0xffff) * 1

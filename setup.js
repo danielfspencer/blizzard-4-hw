@@ -4,7 +4,6 @@ const { SoftwareModel } = require("./models/sw/interface")
 const { HardwareModel } = require("./models/hw/interface")
 
 global.MODELS = [new SoftwareModel(), new HardwareModel()]
-global.DUAL_OP_ITERS = 50000
 
 global.random_int = random_int
 

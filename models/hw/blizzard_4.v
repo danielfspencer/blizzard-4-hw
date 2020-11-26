@@ -3,7 +3,9 @@
 module blizzard_4 (
     input clk,
     input reset,
-    input ctrl_enable
+    input ctrl_enable,
+    input ps2_data,
+    input ps2_clock
     );
 
     wire ctrl_clk;
@@ -53,6 +55,19 @@ module blizzard_4 (
         );
 
     vram vram(
+        .read_clk(read_clk),
+        .write_clk(write_clk),
+        .reset(reset),
+        .read_bus(read_bus),
+        .data_bus(data_bus),
+        .write_bus(write_bus)
+        );
+
+    io io(
+        .ps2_data(ps2_data),
+        .ps2_clock(ps2_clock),
+
+        .ctrl_clk(ctrl_clk),
         .read_clk(read_clk),
         .write_clk(write_clk),
         .reset(reset),

@@ -57,7 +57,9 @@ void init(void) {
     // init top level inputs
     top->clk = 0;
     top->reset = 0;
-    top->ctrl_enable = true;
+    top->ctrl_enable = 1;
+    top->ps2_clock = 1;
+    top->ps2_data = 0;
 
     // async reset
     reset();

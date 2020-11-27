@@ -13,7 +13,7 @@
     "test": "npm run all",
     "all": "jest --noStackTrace --testPathPattern tests/ --maxWorkers 13",
     "unit": "jest --noStackTrace --testPathPattern tests/unit/ --maxWorkers 8",
-    "integration": "jest --noStackTrace --testPathPattern tests/integration/ --maxWorkers 5"
+    "integration": "jest --noStackTrace --testPathPattern tests/integration/ --maxWorkers 6"
   },
   "author": "",
   "license": "GPL-3.0"

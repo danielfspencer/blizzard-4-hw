@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "npm run all",
-    "all": "jest --noStackTrace --testPathPattern tests/ --maxWorkers 13",
+    "all": "jest --noStackTrace --testPathPattern tests/ --maxWorkers 14",
     "unit": "jest --noStackTrace --testPathPattern tests/unit/ --maxWorkers 8",
     "integration": "jest --noStackTrace --testPathPattern tests/integration/ --maxWorkers 6"
   },

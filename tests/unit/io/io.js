@@ -29,7 +29,7 @@ describe('total fill & empty', () => {
     for (let expected of fifo) {
       let actual = model.read(0x1006)
       if (actual !== expected) {
-        throw new Error(`${fifo} Expected FIFO read = ${expected}, got ${actual}`)
+        throw new Error(`Expected FIFO read = ${expected}, got ${actual}`)
       }
     }
 

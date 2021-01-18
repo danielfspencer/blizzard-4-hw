@@ -548,7 +548,7 @@ function simulate_effect_of_read_bus_change() {
         }
         break
       case 1:                                                             //stack
-        let abs_address = stack_pointer + address
+        let abs_address = (stack_pointer + address) & 0b11111111111111
         data_bus = ram[abs_address]
         activity_indicators.ram_address = abs_address
         activity_indicators.ram_read = 1
@@ -642,7 +642,7 @@ function simulate_effect_of_write_bus_change() {
         }
         break
       case 1:                                                             //stack
-      let abs_address = stack_pointer + address
+        let abs_address = (stack_pointer + address) & 0b11111111111111
         ram[abs_address] = data_bus
         ram_change(abs_address, data_bus)
         activity_indicators.ram_address = abs_address

@@ -30,3 +30,24 @@ describe('read/write', () => {
     }
   })
 })
+
+describe('stack pointer', () => {
+  test.each(MODELS)('%s', model => {
+    for (let stack_poitner = 0; stack_poitner < 0x4000; stack_poitner++) {
+      let value = random_word()
+
+      // write value to ram location
+      model.write(value, 0x4000 + stack_poitner)
+
+      // set stack pointer
+      model.write(stack_poitner, 2)
+
+      // try to access value via stack
+      let result = model.read(0x800)
+
+      if (result !== value) {
+        throw new Error(`Read via stack expected ${value} (got ${result})`)
+      }
+    }
+  })
+})

@@ -25,7 +25,6 @@ extern "C" void destroy(void);
 extern "C" void reset(void);
 
 extern "C" void _step(int cycles);
-extern "C" int _get_pc(void);
 extern "C" void _send_ps2_byte(int byte);
 extern "C" int _read(int addr);
 extern "C" void _write(int value, int addr);
@@ -91,10 +90,6 @@ void destroy(void) {
 
 void _step(int cycles) {
     step(cycles);
-}
-
-int _get_pc(void) {
-    return top->blizzard_4__DOT__control__DOT__program_counter;
 }
 
 int _read(int addr) {

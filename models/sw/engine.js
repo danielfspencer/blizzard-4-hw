@@ -235,9 +235,7 @@ onmessage = (event) => {
       }
       break
     case "key_code":
-      if (key_fifo.length < 256) {
-        key_fifo.push.apply(key_fifo,message[1])
-      }
+      add_fifo_bytes(message[1])
       break
     case "set_clock":
       target_cycles_per_second = message[1]
@@ -272,6 +270,14 @@ function copy(source, dest) {
   write_bus = dest & 0xffff
   simulate_effect_of_read_bus_change()
   simulate_effect_of_write_bus_change()
+}
+
+function add_fifo_bytes(bytes) {
+  for (let byte of bytes) {
+    if (key_fifo.length < 256) {
+      key_fifo.push(byte)
+    }
+  }
 }
 
 function measure_frequency() {

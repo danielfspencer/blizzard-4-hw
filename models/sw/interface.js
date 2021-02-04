@@ -77,11 +77,7 @@ class SoftwareModel extends Model {
   }
 
   send_ps2_bytes(bytes) {
-    for (let byte of bytes) {
-      if (this.instance.key_fifo.length < 256) {
-        this.instance.key_fifo.push(byte)
-      }
-    }
+    this.instance.add_fifo_bytes(bytes)
   }
 }
 

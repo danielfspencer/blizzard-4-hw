@@ -1,6 +1,6 @@
 describe('copy', () => {
   test.each(MODELS)('%s', model => {
-    for (let addr = 0x4000; addr < 0x8000 - 1; addr++) {
+    for (let addr = 0x4000; addr < 0xffff - 1; addr++) {
       let value = random_word()
 
       model.write(value, addr)
@@ -17,7 +17,7 @@ describe('copy', () => {
 
 describe('read/write', () => {
   test.each(MODELS)('%s', model => {
-    for (let addr = 0x4000; addr < 0x8000; addr++) {
+    for (let addr = 0x4000; addr < 0xffff; addr++) {
       let value = random_word()
 
       model.write(value, addr)
@@ -26,27 +26,6 @@ describe('read/write', () => {
 
       if (result !== value) {
         throw new Error(`Read ${addr} did not equal ${value} (got ${result})`)
-      }
-    }
-  })
-})
-
-describe('stack pointer', () => {
-  test.each(MODELS)('%s', model => {
-    for (let stack_poitner = 0; stack_poitner < 0x4000; stack_poitner++) {
-      let value = random_word()
-
-      // write value to ram location
-      model.write(value, 0x4000 + stack_poitner)
-
-      // set stack pointer
-      model.write(stack_poitner, 2)
-
-      // try to access value via stack
-      let result = model.read(0x800)
-
-      if (result !== value) {
-        throw new Error(`Read via stack expected ${value} (got ${result})`)
       }
     }
   })

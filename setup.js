@@ -5,7 +5,7 @@ const { SoftwareModel } = require("./models/sw/interface")
 const { HardwareModel } = require("./models/hw/interface")
 const { CrossCheck } = require("./models/crosscheck/interface")
 
-global.MODELS = [new SoftwareModel(), new HardwareModel()]
+global.MODELS = [new HardwareModel()]
 global.CROSS_CHECK = new CrossCheck([...MODELS])
 
 global.random_int = random_int

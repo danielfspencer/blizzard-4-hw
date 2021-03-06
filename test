@@ -1,0 +1,53 @@
+test: unit: ram: remove stack test
+test: unit: rom: remove test
+hw: remove get_pc interface
+sw: refactor ps2 input function
+sw: limit stack pointer to 14 bits
+test: unit: ram: add stack pointer test
+Set slow test threshold to 60s
+test: unit: io: don't print whole FIFO on fail
+test: integr: text: fix indentation
+test: integr: snake: don't a keypress
+Fix number of workers for "run all"
+test: integr: add std lib based correctness tests
+hw: remove unused "posedge reset"
+hw: control: don't print "stop clock"
+npm scripts to run unit/integration or all tests
+test: integr: add 5 consistency based tests
+interface: add CrossCheck (for consistency tests)
+interface: change send_ps2_byte to send_ps2_bytes
+test: unit: io: add tests
+hw/sw: add send_ps2_byte interface
+sw: start with empty fifo
+hw: add io module
+test: unit: alu: use 25000 iterations
+test: move newline generation
+test: unit: alu: define iter count in test file
+Remove get pc interface
+Use 2-space indents
+test: expose random_int function
+test: unit: use 50000 iters for dual operand tests
+test: unit: alu: group tests by number of operands
+test: unit: ram: merge r/w copy test into one file
+test: unit: rom: merge r/w copy test into one file
+test: unit: vram: add r/w & copy test
+hw: add vram module
+hw: rom: allow access to last word
+test: unit: rom: test last word
+test: unit: control: add execute test
+test: unit: control: fix fetch test
+test: unit: control: add fetch test
+hw/sw: add reset function
+hw: delete unused file
+hw: don't load memory images
+hw: move u_code into own folder
+hw: add get_pc function
+hw: clean up interface
+interface: add set_mem function
+hw: control: initial implementation
+sw: remove set_control_status, replace with get pc
+sw: remove control_unit_enabled flag
+Don't use --watchAll
+Remove package-lock.json
+Watch for changes in .v and .cpp as well as JS
+Initial commit

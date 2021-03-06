@@ -5,14 +5,14 @@
   "main": "test.js",
   "dependencies": {
     "fastcall": "^0.2.6",
-    "jest": "^26.5.3",
+    "jest": "^26.6.3",
     "random-int": "^2.0.1",
-    "segfault-handler": "^1.3.0"
+    "segfault-handler": "^1.3.0",
+    "webworker-threads": "^0.7.17"
   },
   "scripts": {
-    "test": "npm run all",
-    "all": "jest --noStackTrace --testPathPattern tests/ --maxWorkers 14",
-    "unit": "jest --noStackTrace --testPathPattern tests/unit/ --maxWorkers 8",
+    "all": "jest --noStackTrace --maxWorkers 14",
+    "unit": "jest --noStackTrace --testPathPattern tests/unit/control --maxWorkers 3 --no-cache",
     "integration": "jest --noStackTrace --testPathPattern tests/integration/ --maxWorkers 6"
   },
   "author": "",

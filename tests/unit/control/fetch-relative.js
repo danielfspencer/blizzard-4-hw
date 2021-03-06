@@ -38,32 +38,28 @@ class AddressingMode {
   }
 }
 
-const NON_RELATIVE_MODES = [
-  [[0,0,0], [0,0,0]],
-  [[0,0,0], [1,0,0]],
-  [[1,0,0], [0,0,0]],
-  [[1,0,0], [1,0,0]],
+const RELATIVE_MODES = [
+  [[0,1,0], [0,1,0]],
+  [[0,1,0], [0,1,1]],
+  [[0,1,1], [0,1,0]],
+  [[0,1,1], [0,1,1]],
+  [[1,1,0], [1,1,0]],
+  [[1,1,0], [1,1,1]],
+  [[1,1,1], [1,1,0]],
+  [[1,1,1], [1,1,1]],
 ]
 
-// non-relative modes
-for (const [op_1, op_2] of NON_RELATIVE_MODES) {
+// relative modes
+
+
+// direct modes can check that PC/SP has been added during value lookup
+// immediate modes need more work
+for (const [op_1, op_2] of RELATIVE_MODES) {
   generate_test([
     new AddressingMode(...op_1),
     new AddressingMode(...op_2)
   ])
 }
-
-describe('reset adddress', () => {
-  test.each(MODELS)('%s', model => {
-    model.reset()
-    model.step()
-
-    // expect control unit to have fetched from RAM_START
-    if (model.read_bus !== RAM_START) {
-      throw new Error(`Expected read from ${RAM_START}, got ${model.read_bus}`)
-    }
-  })
-})
 
 function generate_test(modes) {
   describe(`fetch <${modes[0]}> <${modes[1]}>`, () => {
@@ -104,7 +100,7 @@ function generate_test(modes) {
             throw new Error(`Expected read from ${OP_ADDRESSES[i]} (op. ${i+1} address), got ${model.read_bus}`)
           }
 
-          // operand value lookup (if using direct addressing mode)
+          // operand value lookup (direct addressing)
           if (modes[i].direct) {
             model.step()
 

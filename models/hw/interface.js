@@ -98,8 +98,6 @@ function run_step(name, cmd, cwd) {
 
     console.error("> Model build failed")
     process.exit(1)
-  } else {
-    // console.debug(val.stdout.toString())
   }
 }
 

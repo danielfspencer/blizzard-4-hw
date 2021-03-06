@@ -74,9 +74,6 @@ void reset(void) {
     tick();
     top->reset = 0;
     tick();
-
-    // needed for control unit to be ready
-    step(1);
 }
 
 void destroy(void) {

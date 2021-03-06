@@ -12,10 +12,6 @@
 `define ALU_EQ  'h13
 `define ALU_OV  'h14
 
-`define STACK_POINT 'h2
-`define STACK_START 'h800
-`define STACK_END   'h1000
-
 `define IO_INP1 'h1000
 `define IO_INP2 'h1001
 `define IO_INP3 'h1002
@@ -28,7 +24,4 @@
 `define VRAM_END   'h1C00
 
 `define RAM_START 'h4000
-`define RAM_END   'h8000
-
-`define ROM_START 'h8000
-`define ROM_END   'hFFFF
+`define RAM_END   'hFFFF

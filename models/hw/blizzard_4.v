@@ -43,17 +43,6 @@ module blizzard_4 (
         .write_bus(write_bus)
         );
 
-    rom rom(
-        .write_protect(1'b0),
-
-        .read_clk(read_clk),
-        .write_clk(write_clk),
-        .reset(reset),
-        .read_bus(read_bus),
-        .data_bus(data_bus),
-        .write_bus(write_bus)
-        );
-
     vram vram(
         .read_clk(read_clk),
         .write_clk(write_clk),

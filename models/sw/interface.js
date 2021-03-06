@@ -30,6 +30,8 @@ class SoftwareModel extends Model {
     this.instance = create_context([
       [EMULATOR, '<emulator>']
     ])
+
+    this.reset()
   }
 
   toString () {
@@ -37,8 +39,7 @@ class SoftwareModel extends Model {
   }
 
   reset () {
-    this.instance.init_memory()
-    this.instance.init_emulator()
+    this.instance.reset()
   }
 
   step (cycles) {

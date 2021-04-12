@@ -1,5 +1,13 @@
 `include "headers/types.vh"
 
+`include "modules/alu.v"
+`include "modules/ram.v"
+`include "modules/rom.v"
+`include "modules/vram.v"
+`include "modules/io.v"
+`include "modules/control.v"
+`include "modules/clock_generator.v"
+
 module blizzard_4 (
     input clk,
     input reset,

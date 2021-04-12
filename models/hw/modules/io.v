@@ -2,6 +2,9 @@
 `include "headers/clocks.vh"
 `include "headers/addresses.vh"
 
+`include "generic/async_fifo.v"
+`include "generic/ps2_interface.v"
+
 module io (
     input ps2_data,
     input ps2_clock,

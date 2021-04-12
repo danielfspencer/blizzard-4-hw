@@ -8,6 +8,7 @@
 #define PRINT_EVERY_CYCLE false
 #define TRACE_ENABLED true
 #define TRACE_DEPTH 100
+#define TRACE_PATH "traces/"
 
 Vblizzard_4 *top;
 VerilatedVcdC* trace;
@@ -49,7 +50,10 @@ void init(void) {
         trace = new VerilatedVcdC;
 
         top->trace(trace, TRACE_DEPTH);
-        trace->open("out.vcd");
+
+        std::string name = TRACE_PATH + std::to_string(getpid()) + "_trace.vcd";
+
+        trace->open(name.c_str());
     #endif
 
     // setup DPI calls (set_x_bus/get_x_bus)

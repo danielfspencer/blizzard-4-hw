@@ -3,9 +3,9 @@
 `include "headers/addresses.vh"
 
 module rom (
+    input write_protect,
     `CLOCKS,
-    `BUSES,
-    input write_protect
+    `BUSES
     );
 
     parameter DEPTH = 32768;

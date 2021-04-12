@@ -107,9 +107,10 @@ module.exports.HardwareModel = HardwareModel
 
 module.exports.build = () => {
   const STEPS = [
-    ['Verilog to C++',         `verilator blizzard_4.v -Imodules -Igeneric --trace --cc -Wno-fatal --exe main.cpp -CFLAGS "-fpic" -O3 --x-initial unique`],
-    ['C++ compile',            `make -j OPT_FAST="-O3" -C obj_dir -f Vblizzard_4.mk`],
-    ['Create dynamic library', `gcc -shared *.o -o blizzard_4.so`, 'obj_dir']
+    ['Verilog to C++',            `verilator blizzard_4.v -Imodules -Igeneric --trace --cc -Wno-fatal --exe main.cpp -CFLAGS "-fpic" -O3 --x-initial unique`],
+    ['C++ compile',               `make -j OPT_FAST="-O3" -C obj_dir -f Vblizzard_4.mk`],
+    ['Create dynamic library',    `gcc -shared *.o -o blizzard_4.so`, 'obj_dir'],
+    ['Empty/create trace folder', `mkdir -p traces && rm -f traces/*`]
   ]
   process.chdir(__dirname)
 
